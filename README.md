@@ -13,6 +13,6 @@
 
 **GitHub**
 
-* [Ссылка проекта]( https://sashafomak1na.github.io/mesto /)
+* [Ссылка проекта](https://sashafomak1na.github.io/mesto/)
 
 
