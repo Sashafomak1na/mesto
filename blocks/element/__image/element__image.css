@@ -1,0 +1,41 @@
+.element__image {
+    max-width: 282px;
+    max-height: 282px;
+    border-radius: 10px 10px 0 0;
+}
+
+@media (max-width: 950px) {
+    .element__image {
+        min-width: 350px;
+        min-height: 350px;
+    }
+}
+
+@media (max-width: 810px) {
+    .element__image {
+        min-width: 310px;
+        min-height: 310px;
+    }
+}
+
+@media (max-width: 710px) {
+    .element__image {
+        min-width: 530px;
+        min-height: 530px;
+    }
+}
+
+@media (max-width: 580px){
+    .element__image {
+        min-width: 420px;
+        min-height: 420px;
+    }
+}
+
+@media (max-width: 435px) {
+    .element__image {
+        min-width: 100%;
+        min-height: 70%;
+       
+    }
+}
