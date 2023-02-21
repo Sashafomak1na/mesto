@@ -13,8 +13,10 @@
     }
 }
 
-@media (max-width: 580px){
+@media (max-width: 435px){
     .footer__copyright{
         padding: 48px 6% 0;
+        font-size: 14px;
+        line-height: 1.21;
     }
 }

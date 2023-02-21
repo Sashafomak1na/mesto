@@ -4,3 +4,10 @@
     margin: 0;
     padding: 0;
 }
+
+@media (max-width: 710px) {
+    .profile__img {
+        max-width: 7.5px;
+        max-height: 7.5px;
+    }
+}

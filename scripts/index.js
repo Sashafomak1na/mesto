@@ -1,37 +1,51 @@
 const userNameElement = document.querySelector('.profile__title');
 const userOccupationElement = document.querySelector('.profile__subtitle');
-const userNameInput = document.querySelector('.pop-up__item-first');
-const userOccupationInput = document.querySelector('.pop-up__item-second');
-const popUp = document.querySelector('.pop-up');
+const userNameInput = document.querySelector('.popup__item_type_username');
+const userOccupationInput = document.querySelector('.popup__item_type_useroccupation');
+const popUp = document.querySelector('.popup');
+let openPopUp = document.querySelector('#profile-edit-button');
 
-
-const openPopUp = document.querySelector('.profile__link');
-let closePopup = document.querySelector(".pop-up__close");
-
-
-openPopUp.addEventListener('click', function(e){
-    e.preventDefault();
-    popUp.classList.add('pop-up_state_active');
-    console.log(popUp.className);
-});
 
 
 function popupClose() {
-  popUp.classList.remove("pop-up_state_active");
+  popUp.classList.remove('popup_opened');
 }
 
+openPopUp.addEventListener('click', function (event) {
+  userNameInput.value = userNameElement.textContent;
+  userOccupationInput.value = userOccupationElement.textContent;
+  popUp.classList.add('popup_opened');
+  console.log(popUp.className);
+});
 
+
+let closePopup = document.querySelector('.popup__close');
 closePopup.addEventListener("click", function (event) {
   popupClose();
 });
 
-let formElement = document.querySelector(".pop-up__container");
+
+let formElement = document.querySelector('#form-edit');
 formElement.addEventListener("submit", function (event) {
   event.preventDefault();
   userNameElement.textContent = userNameInput.value;
   userOccupationElement.textContent = userOccupationInput.value;
   popupClose();
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -2,10 +2,11 @@
     background-color: #000000;
     min-width: 24px;
     min-height: 24px;
-    margin: 0;
     padding: 0;
     border: 1px solid #FFFFFF;
-    align-self: center;
+    align-self: end;
+    margin: 0 0 9px;
+
 }
 
 .profile__edit:hover {
@@ -15,7 +16,10 @@
 
 @media (max-width: 710px) {
     .profile__edit {
-        min-width: 21px;
-        min-height: 21px;
+        margin-top: 10px;
+        min-width: 20px;
+        min-height: 18px;
+        background-size: 7.5px;
     }
 }
+

@@ -11,12 +11,19 @@
 
 @media (max-width: 710px) {
     .profile__subtitle {
-        font-size: 16px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 580px) {
+    .profile__subtitle {
+        text-align: center;
+        margin: 0 0 30px;
     }
 }
 
 @media (max-width: 435px) {
     .profile__subtitle {
-        font-size: 14px;
+        line-height: 1.21;
     }
 }
