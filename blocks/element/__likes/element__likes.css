@@ -8,7 +8,7 @@
     padding: 0;
 }
 
-.element__like:hover {
+.element__likes:hover {
     opacity: 0.5;
     transition: opacity 0.5s linear 0.2s;
 }
