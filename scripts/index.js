@@ -3,7 +3,7 @@ const userOccupationElement = document.querySelector('.profile__subtitle');
 const userNameInput = document.querySelector('.popup__item_type_username');
 const userOccupationInput = document.querySelector('.popup__item_type_useroccupation');
 const popUp = document.querySelector('.popup');
-let openPopUp = document.querySelector('#profile-edit-button');
+let openPopUp = document.querySelector('.profile__edit');
 
 
 
@@ -11,27 +11,31 @@ function popupClose() {
   popUp.classList.remove('popup_opened');
 }
 
-openPopUp.addEventListener('click', function (event) {
+function myFunc() {
   userNameInput.value = userNameElement.textContent;
   userOccupationInput.value = userOccupationElement.textContent;
   popUp.classList.add('popup_opened');
   console.log(popUp.className);
-});
+}
+
+openPopUp.addEventListener('click', myFunc);
 
 
 let closePopup = document.querySelector('.popup__close');
-closePopup.addEventListener("click", function (event) {
-  popupClose();
-});
+closePopup.addEventListener('click', popupClose);
 
 
 let formElement = document.querySelector('#form-edit');
-formElement.addEventListener("submit", function (event) {
+
+function myFuncSecond(event) {
   event.preventDefault();
   userNameElement.textContent = userNameInput.value;
   userOccupationElement.textContent = userOccupationInput.value;
   popupClose();
-});
+}
+
+
+formElement.addEventListener('submit', myFuncSecond);
 
 
 

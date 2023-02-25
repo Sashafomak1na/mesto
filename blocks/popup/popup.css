@@ -7,10 +7,7 @@
     top: 0;
     background-color: rgba(0, 0, 0, .5);
     z-index: 2;
-    align-items: center;
     justify-content: center;
+    align-items: center;
 }
 
-.popup_opened {
-    display: block;
-}

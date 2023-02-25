@@ -3,7 +3,7 @@
     max-width: 120px;
     max-height: 120px;
     padding: 0;
-    margin: 40px 30px 52px 0;
+    margin: 40px 0 52px 0;
 }
 
 @media (max-width: 580px) {
