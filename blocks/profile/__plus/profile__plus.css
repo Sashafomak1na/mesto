@@ -2,3 +2,10 @@
     max-width: 22px;
     max-height: 22px;
 }
+
+@media (max-width: 435px) {
+    .profile__plus {
+        max-width: 15px;
+        max-height: 15px;
+    }
+}

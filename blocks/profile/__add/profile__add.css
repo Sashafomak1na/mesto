@@ -26,12 +26,12 @@
     .profile__add {
         margin: 0 auto;
         min-width: 100%;
-        min-height: 55px;
+        min-height: 50px;
     }
 }
 
 @media (max-width: 435px) {
     .profile__add {
-        min-width: 89%;
+        min-width: 88%;
     }
 }
