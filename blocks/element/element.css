@@ -3,6 +3,7 @@
     background-color: #FFFFFF;
     max-height: 361px;
     border-radius: 10px;
+    position: relative;
 }
 
 @media (max-width: 950px) {
