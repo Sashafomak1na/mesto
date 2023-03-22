@@ -1,0 +1,14 @@
+.popup__item-error_type_username {
+    color: #FF0000;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.25;
+    max-width: 358px;
+}
+
+@media (max-width: 581px) {
+    .popup__item-error_type_username {
+        max-width: 238px;
+        max-height: 10px;
+    }
+}

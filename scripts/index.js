@@ -31,6 +31,8 @@ const initialCards = [
   },
 ];
 
+
+
 const inputPlaceUrl = document.querySelector(".popup__item_type_picture");
 const inputPlaceName = document.querySelector(".popup__item_type_called");
 const userNameElement = document.querySelector(".profile__title");
@@ -47,12 +49,37 @@ const popupFullPicDescription = document.querySelector(".popup__pic-directory");
 const popupFormTypeLink = document.querySelector(".popup__item_type_picture");
 const popupFormTypeName = document.querySelector(".popup__item_type_callpopup");
 
-function openPopup(popup) {
-  popup.classList.add("popup_opened");
+function openPopup(popUp) {
+  popUp.classList.add("popup_opened");
+  includeEscListener();
+  const openedPopup = document.querySelector('.popup_opened');
+  openedPopup.addEventListener('click', (e) => closeOverlay(e, popUp));
+}
+
+function closeOverlay(e, popUp) {
+  if (e.target === e.currentTarget) {
+    closePopup(popUp)
+  }
 }
 
 function closePopup(popUp) {
   popUp.classList.remove("popup_opened");
+  unplugEscListener()
+}
+
+
+
+function onEscClose(e) {
+  if (e.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  }
+}
+function includeEscListener() {
+  document.addEventListener('keyup', onEscClose)
+}
+function unplugEscListener() {
+  document.removeEventListener('keyup', onEscClose)
 }
 
 popUpOpenChangeProfile.addEventListener("click", function (event) {

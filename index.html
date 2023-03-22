@@ -53,25 +53,29 @@
       <div class="popup" id="change-profile">
         <div class="popup__container">
           <h2 class="popup__title">Редактировать профиль</h2>
-          <form
-            class="popup__container-input"
+          <form novalidate
+            class="popup__container-input popup__container-input_type_edit"
             id="form-edit"
             name="profile"
             action="#"
           >
-            <input
+            <input minlength="2" maxlength="40"
+            required
               type="text"
               class="popup__item popup__item_type_username"
               placeholder="Имя"
-              name="name"
+              name="username"
             />
-            <input
+            <span class="popup__item-error popup__item-error_type_username"></span>
+            <input minlength="2" maxlength="200"
+            required
               type="text"
               class="popup__item popup__item_type_useroccupation"
               placeholder="Род деятельности"
-              name="Type of activity"
+              name="useroccupation"
             />
-            <button class="popup__save" type="submit" aria-label="Сохранить">
+            <span class="popup__item-error popup__item-error_type_useroccupation"></span>
+            <button class="popup__save popup__save_valid" type="submit" aria-label="Сохранить">
               Сохранить
             </button>
           </form>
@@ -81,25 +85,29 @@
       <div class="popup" id="add-card">
         <div class="popup__container">
           <h2 class="popup__title">Новое место</h2>
-          <form
-            class="popup__container-input"
+          <form novalidate
+            class="popup__container-input popup__container-input_type_card"
             id="form-picture"
             name="profile"
             action="#"
           >
-            <input
+            <input minlength="2" maxlength="30"
+            required
               type="text"
               class="popup__item popup__item_type_callpopup"
               placeholder="Название"
-              name="name"
+              name="callpopup"
             />
+            <span class="popup__item-error popup__item-error_type_callpopup"></span>
             <input
-              type="text"
+            required
+              type="url"
               class="popup__item popup__item_type_picture"
               placeholder="Ссылка на картинку"
-              name="occupation"
+              name="picture"
             />
-            <button class="popup__save" type="submit" aria-label="Сохранить">
+            <span class="popup__item-error popup__item-error_type_picture"></span>
+            <button class="popup__save popup__save_valid" type="submit" aria-label="Сохранить">
               Создать
             </button>
           </form>
@@ -114,6 +122,7 @@
         </figure>
       </div>
     </div>
+    <script src="./scripts/validate.js"></script>
     <script src="./scripts/index.js"></script>
   </body>
 </html>

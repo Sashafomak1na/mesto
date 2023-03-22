@@ -1,0 +1,15 @@
+.popup__item-error_type_callpopup {
+    color: #FF0000;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.25;
+    max-width: 358px;
+}
+
+@media (max-width: 581px) {
+    .popup__item-error_type_callpopup {
+        max-width: 238px;
+        min-height: 10px;
+    }
+}
