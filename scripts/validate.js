@@ -1,11 +1,10 @@
-const popup = document
 
-const showInputInvalid = (input) => {
-  input.classList.add("popup__item_type_invalid");
+const showInputInvalid = (input, popupItemErrorClass) => {
+  input.classList.add(popupItemErrorClass);
 }
 
-const hideInputInvalid = (input) => {
-  input.classList.remove("popup__item_type_invalid");
+const hideInputInvalid = (input, popupItemErrorClass) => {
+  input.classList.remove(popupItemErrorClass);
 }
 
 
@@ -29,15 +28,15 @@ const showInputError = (errorTextElement, validationMessage, activeErrorClass) =
     submitButton.disabled = false;
   };
   
-  const checkInputValidity = (input, errorClassTemplate, activeErrorClass) => {
+  const checkInputValidity = (input, errorClassTemplate, activeErrorClass, popupItemErrorClass) => {
     const errorTextElement = document.querySelector(`${errorClassTemplate}${input.name}`);
     if (!input.validity.valid) {
       showInputError(errorTextElement, input.validationMessage, activeErrorClass);
-      showInputInvalid(input);
+      showInputInvalid(input, popupItemErrorClass);
       
     } else {
       hideInputError(errorTextElement);
-      hideInputInvalid(input);
+      hideInputInvalid(input, popupItemErrorClass);
       
     }
   };
@@ -61,7 +60,7 @@ const showInputError = (errorTextElement, validationMessage, activeErrorClass) =
     activeErrorClass,
     validSubmitButtonClass,
     submitButtonSelector,
-    popupSelector
+    popupItemErrorClass
   ) => {
     form.addEventListener('submit', function (evt) {
       evt.preventDefault();
@@ -73,13 +72,12 @@ const showInputError = (errorTextElement, validationMessage, activeErrorClass) =
   
     inputList.forEach(input => {
       input.addEventListener('input', e => {
-        checkInputValidity(e.target, errorClassTemplate, activeErrorClass);
+        checkInputValidity(e.target, errorClassTemplate, activeErrorClass, popupItemErrorClass);
         toggleButtonState(submitButton, validSubmitButtonClass, inputList);
       });
     });
   };
   
-  const enumerationForm = () => {};
   
   const enableValidation = config => {
     const forms = Array.from(document.querySelectorAll(config.formSelector)); 
@@ -91,7 +89,7 @@ const showInputError = (errorTextElement, validationMessage, activeErrorClass) =
         config.activeErrorClass,
         config.validSubmitButtonClass,
         config.submitButtonSelector,
-        config.popupSelector
+        config.popupItemErrorClass
       );
     });
   
@@ -104,6 +102,6 @@ const showInputError = (errorTextElement, validationMessage, activeErrorClass) =
     activeErrorClass: 'popup__item-error',
     submitButtonSelector: '.popup__save',
     validSubmitButtonClass: 'popup__save_valid',
-    popupSelector: '.popup'
+    popupItemErrorClass: 'popup__item_type_invalid'
   });
   

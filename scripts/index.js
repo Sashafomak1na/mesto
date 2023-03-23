@@ -52,6 +52,11 @@ const popupFormTypeName = document.querySelector(".popup__item_type_callpopup");
 function openPopup(popUp) {
   popUp.classList.add("popup_opened");
   includeEscListener();
+  openedOverlay(popUp);
+}
+
+
+const openedOverlay = function(popUp) {
   const openedPopup = document.querySelector('.popup_opened');
   openedPopup.addEventListener('click', (e) => closeOverlay(e, popUp));
 }
@@ -69,17 +74,17 @@ function closePopup(popUp) {
 
 
 
-function onEscClose(e) {
+function handleEscape(e) {
   if (e.key === 'Escape') {
     const openedPopup = document.querySelector('.popup_opened');
     closePopup(openedPopup);
   }
 }
 function includeEscListener() {
-  document.addEventListener('keyup', onEscClose)
+  document.addEventListener('keyup', handleEscape)
 }
 function unplugEscListener() {
-  document.removeEventListener('keyup', onEscClose)
+  document.removeEventListener('keyup', handleEscape)
 }
 
 popUpOpenChangeProfile.addEventListener("click", function (event) {
@@ -162,7 +167,10 @@ function handleCardFormSubmit(event) {
   addCard(cardData);
   closePopup(popupAddCard);
   cardForm.reset();
+  event.submitter.classList.remove('popup__save_valid');
+  event.submitter.disabled = true;
 }
+
 
 cardForm.addEventListener("submit", handleCardFormSubmit);
 
