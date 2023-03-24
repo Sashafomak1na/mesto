@@ -92,7 +92,7 @@ popUpOpenChangeProfile.addEventListener("click", function (event) {
   userNameInput.value = userNameElement.textContent;
   userOccupationInput.value = userOccupationElement.textContent;
   openPopup(popupChangeProfile);
-  openedOverlay(popupChangeProfile);
+  popupChangeProfile.addEventListener('click', (e) => closeOverlay(e, popupChangeProfile));
 });
 
 const profileCloseButton = document.querySelector(".popup__close");
@@ -129,7 +129,7 @@ function createCard(card) {
 
   cardImage.addEventListener("click", function (event) {
     openPopup(popupFullPic);
-    openedOverlay(popupFullPic);
+    popupFullPic.addEventListener('click', (e) => closeOverlay(e, popupFullPic));
     popupFullPicImage.setAttribute("src", card.link);
     popupFullPicImage.setAttribute("alt", card.name);
 
@@ -156,7 +156,7 @@ const cardPopupOpenButton = document.querySelector(".profile__add");
 const addCardClose = popupAddCard.querySelector(".popup__close");
 cardPopupOpenButton.addEventListener("click", function (event) {
   openPopup(popupAddCard);
-  openedOverlay(popupAddCard);
+  popupAddCard.addEventListener('click', (e) => closeOverlay(e, popupAddCard));
 });
 
 addCardClose.addEventListener("click", function () {
