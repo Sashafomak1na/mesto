@@ -54,19 +54,14 @@ function openPopup(popUp) {
   includeEscListener();
 }
 
-
-const openedOverlay = function(popUp) {
-  const openedPopup = document.querySelector('.popup_opened');
-  openedPopup.addEventListener('click', (e) => closeOverlay(e, popUp));
-}
-
-
-
 function closeOverlay(e, popUp) {
   if (e.target === e.currentTarget) {
     closePopup(popUp)
   }
 }
+
+
+
 
 function closePopup(popUp) {
   popUp.classList.remove("popup_opened");
