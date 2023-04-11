@@ -31,21 +31,22 @@
             />
           </button>
         </section>
-        <section class="elements"></section>
-        <template id="cardTemplate">
-          <div class="element">
-            <img class="element__image" />
-            <div class="element__content">
-              <h2 class="element__title"></h2>
-              <button
-                class="element__likes"
-                title="Лайк"
-                type="button"
-              ></button>
+        <section class="elements">
+          <template id="cardTemplate">
+            <div class="element">
+              <img class="element__image" />
+              <div class="element__content">
+                <h2 class="element__title"></h2>
+                <button
+                  class="element__likes"
+                  title="Лайк"
+                  type="button"
+                ></button>
+              </div>
+              <button type="button" class="element__delete">Удалить</button>
             </div>
-            <button type="button" class="element__delete">Удалить</button>
-          </div>
-        </template>
+          </template>
+        </section>
       </main>
       <footer class="footer">
         <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
@@ -63,23 +64,25 @@
             <input minlength="2" maxlength="40"
             required
               type="text"
+              id="popup__username"
               class="popup__item popup__item_type_username"
               placeholder="Имя"
               name="username"
             />
-            <span class="popup__item-error popup__item-error_type_username"></span>
+            <span class="popup__item-error" id="popup__username-error"></span>
           </div>
           <div class="popup__item-container">
             <input minlength="2" maxlength="200"
             required
               type="text"
+              id="popup__useroccupation"
               class="popup__item popup__item_type_useroccupation"
               placeholder="Род деятельности"
               name="useroccupation"
             />
-            <span class="popup__item-error popup__item-error_type_useroccupation"></span>
+            <span class="popup__item-error" id="popup__useroccupation-error"></span>
           </div>
-            <button class="popup__save popup__save_valid" type="submit" aria-label="Сохранить">
+            <button class="popup__save" type="submit" aria-label="Сохранить">
               Сохранить
             </button>
           </form>
@@ -98,24 +101,26 @@
           <div class="popup__item-container">
             <input minlength="2" maxlength="30"
             required
+            id="popup__callpopup"
               type="text"
               class="popup__item popup__item_type_callpopup"
               placeholder="Название"
               name="callpopup"
             />
-            <span class="popup__item-error popup__item-error_type_callpopup"></span>
+            <span class="popup__item-error" id="popup__callpopup-error"></span>
           </div>
           <div class="popup__item-container">
             <input
             required
               type="url"
+              id="popup__picture"
               class="popup__item popup__item_type_picture"
               placeholder="Ссылка на картинку"
               name="picture"
             />
-            <span class="popup__item-error popup__item-error_type_picture"></span>
+            <span class="popup__item-error" id="popup__picture-error"></span>
           </div>
-            <button class="popup__save popup__save_valid" type="submit" aria-label="Сохранить">
+            <button class="popup__save" type="submit" aria-label="Сохранить">
               Создать
             </button>
           </form>
@@ -130,7 +135,6 @@
         </figure>
       </div>
     </div>
-    <script src="./scripts/validate.js"></script>
-    <script src="./scripts/index.js"></script>
+    <script type="module" src="./scripts/index.js"></script>
   </body>
 </html>
