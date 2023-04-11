@@ -84,7 +84,7 @@ const cardFormValidation = new FormValidator (validate, addCardConst.popupAddCar
 cardFormValidation.enableValidation();
 
 
-const  submitButtonHandler = (evt) => {
+const  submitCardsHandler = (evt) => {
     evt.preventDefault();
     popupEditConst.profileTitleName.textContent = popupEditConst.popupProfileInputName.value;
     popupEditConst.profileJob.textContent = popupEditConst.popupProfileInputJob.value;
@@ -145,7 +145,7 @@ switchPopupListeners();
 
 popupEditConst.profileEditButton.addEventListener('click', editFunctionHandler);
 console.log(popupEditConst.profileEditButton)
-popupEditConst.popupProfileForm.addEventListener('submit', submitButtonHandler)
+popupEditConst.popupProfileForm.addEventListener('submit', submitCardsHandler)
 
 addCardConst.profileAddButton.addEventListener('click', () => {
     addCardConst. popupAddCardForm.reset();
