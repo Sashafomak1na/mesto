@@ -58,33 +58,32 @@
             class="popup__container-input popup__container-input_type_edit"
             id="form-edit"
             name="profile"
-            action="#"
-          >
-          <div class="popup__item-container">
-            <input minlength="2" maxlength="40"
-            required
-              type="text"
-              id="popup__username"
-              class="popup__item popup__item_type_username"
-              placeholder="Имя"
-              name="username"
-            />
-            <span class="popup__item-error" id="popup__username-error"></span>
-          </div>
-          <div class="popup__item-container">
-            <input minlength="2" maxlength="200"
-            required
-              type="text"
-              id="popup__useroccupation"
-              class="popup__item popup__item_type_useroccupation"
-              placeholder="Род деятельности"
-              name="useroccupation"
-            />
-            <span class="popup__item-error" id="popup__useroccupation-error"></span>
-          </div>
-            <button class="popup__save" type="submit" aria-label="Сохранить">
-              Сохранить
-            </button>
+            action="#">
+            <div class="popup__item-container">
+              <input minlength="2" maxlength="40"
+              required
+                type="text"
+                id="popup__username"
+                class="popup__item popup__item_type_username"
+                placeholder="Имя"
+                name="username"
+              />
+              <span class="popup__item-error" id="popup__username-error"></span>
+            </div>
+            <div class="popup__item-container">
+              <input minlength="2" maxlength="200"
+              required
+                type="text"
+                id="popup__useroccupation"
+                class="popup__item popup__item_type_useroccupation"
+                placeholder="Род деятельности"
+                name="useroccupation"
+              />
+              <span class="popup__item-error" id="popup__useroccupation-error"></span>
+            </div>
+              <button class="popup__save" type="submit" aria-label="Сохранить">
+                Сохранить
+              </button>
           </form>
           <button type="button" title="button" class="popup__close"></button>
         </div>
@@ -96,38 +95,37 @@
             class="popup__container-input popup__container-input_type_card"
             id="form-picture"
             name="profile"
-            action="#"
-          >
-          <div class="popup__item-container">
-            <input minlength="2" maxlength="30"
-            required
-            id="popup__callpopup"
-              type="text"
-              class="popup__item popup__item_type_callpopup"
-              placeholder="Название"
-              name="callpopup"
-            />
-            <span class="popup__item-error" id="popup__callpopup-error"></span>
-          </div>
-          <div class="popup__item-container">
-            <input
-            required
-              type="url"
-              id="popup__picture"
-              class="popup__item popup__item_type_picture"
-              placeholder="Ссылка на картинку"
-              name="picture"
-            />
-            <span class="popup__item-error" id="popup__picture-error"></span>
-          </div>
-            <button class="popup__save" type="submit" aria-label="Сохранить">
-              Создать
-            </button>
+            action="#">
+            <div class="popup__item-container">
+              <input minlength="2" maxlength="30"
+              required
+              id="popup__callpopup"
+                type="text"
+                class="popup__item popup__item_type_callpopup"
+                placeholder="Название"
+                name="callpopup"
+              />
+              <span class="popup__item-error" id="popup__callpopup-error"></span>
+            </div>
+            <div class="popup__item-container">
+              <input
+              required
+                type="url"
+                id="popup__picture"
+                class="popup__item popup__item_type_picture"
+                placeholder="Ссылка на картинку"
+                name="picture"
+              />
+              <span class="popup__item-error" id="popup__picture-error"></span>
+            </div>
+              <button class="popup__save" type="submit" aria-label="Сохранить">
+                Создать
+              </button>
           </form>
           <button type="button" title="button" class="popup__close"></button>
         </div>
       </div>
-      <div class="popup" id="popup-full-image">
+      <div class="popup popup__image" id="popup-full-image">
         <figure class="popup__container-full-image">
           <img class="popup__pic" />
           <figcaption class="popup__pic-directory">Горный Алтай</figcaption>
