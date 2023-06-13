@@ -21,7 +21,7 @@ const userInfo = new UserInfo({
 });
 
 
-const popupUserInfo = new PopupWithForm(".popup__change-profile", {
+const popupUserInfo = new PopupWithForm(".popup__change", {
   handleFormSubmit: (data) => {
     userInfo.setUserInfo(data);
 
@@ -55,7 +55,7 @@ const cardsList = new Section(
 cardsList.rendererItems(initialCards);
 
 
-const popupAddNewCard = new PopupWithForm(".popup__add-card", {
+const popupAddNewCard = new PopupWithForm(".popup__add", {
   handleFormSubmit: ({ place, link }) => {
     cardsList.setItem(createCard({ name: place, link: link }));
   },
