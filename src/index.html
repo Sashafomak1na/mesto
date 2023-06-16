@@ -8,13 +8,13 @@
   <body class="page">
     <div class="page-content">
       <header class="header">
-        <img class="logo" src="./images/logo.svg" alt="Картинка логотип" />
+        <img class="logo" src="<%=require('./images/logo.svg')%>" alt="Картинка логотип" />
       </header>
       <main class="main">
         <section class="profile">
           <img
             class="profile__avatar"
-            src="./images/avatar.jpg"
+            src="<%=require('./images/avatar.jpg')%>"
             alt="Картинка аватар"
           />
           <div class="profile__info">
@@ -25,7 +25,7 @@
           <button class="profile__add" type="button">
             <img
               class="profile__plus"
-              src="./images/Plas.svg"
+              src="<%=require('./images/Plas.svg')%>"
               alt="Картинка плюс"
             />
           </button>
@@ -84,10 +84,10 @@
                 Сохранить
               </button>
           </form>
-          <button type="button" title="button" class="popup__close"></button>
+          <button type="button" title="button" class="popup__close popup__close_profile"></button>
         </div>
       </div>
-      <div class="popup" id="add-card">
+      <div class="popup popup_type_add-card" id="add-card">
         <div class="popup__container">
           <h2 class="popup__title">Новое место</h2>
           <form novalidate
@@ -102,7 +102,7 @@
                 type="text"
                 class="popup__item popup__item_type_callpopup"
                 placeholder="Название"
-                name="callpopup"
+                name="place"
               />
               <span class="popup__item-error" id="popup__callpopup-error"></span>
             </div>
@@ -113,7 +113,7 @@
                 id="popup__picture"
                 class="popup__item popup__item_type_picture"
                 placeholder="Ссылка на картинку"
-                name="picture"
+                name="link"
               />
               <span class="popup__item-error" id="popup__picture-error"></span>
             </div>
@@ -121,14 +121,14 @@
                 Создать
               </button>
           </form>
-          <button type="button" title="button" class="popup__close"></button>
+          <button type="button" title="button" class="popup__close popup__close_card"></button>
         </div>
       </div>
       <div class="popup popup-full-image" id="popup-full-image">
         <figure class="popup__container-full-image">
           <img class="popup__pic" />
           <figcaption class="popup__pic-directory">Горный Алтай</figcaption>
-          <button type="button" title="button" class="popup__close"></button>
+          <button type="button" title="button" class="popup__close popup__close_photo"></button>
         </figure>
       </div>
     </div>

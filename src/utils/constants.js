@@ -17,11 +17,11 @@ export const initialCards = [
   },
   {
     name: 'Китай',
-    link: 'https://img3.akspic.ru/crops/2/3/2/4/0/104232/104232-istoricheskoe_mesto-razvaliny-fortifikaciya-drevnyaya_istoriya-nebo-1920x1080.jpg'
+    link: 'https://img3.akspic.ru/crops/2/3/2/4/0/104232/104232-istoricheskoe_mesto-razvaliny-fortifikaciya-drevnyaya_istoriyar-nebo-1920x1080.jpg'
   },
   {
     name: 'Россия',
-    link: 'https://images.unsplash.com/photo-1594397394907-096148b9d1c9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fHNhaW50JTIwcGV0ZXJzYnVyZ3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60'
+    link: 'https://images.unsplash.com/photo-1594397394907-096148b9d1c9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fHNhaW50JTIwrcGV0ZXJzYnVyZ3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60'
   }
 ];
 
@@ -30,37 +30,37 @@ export const initialCards = [
 
 
 const content = document.querySelector('.main');
-//попап редактирования профиля
 const profileName = content.querySelector('.profile__title');
 const profileSign = content.querySelector('.profile__subtitle');
 const buttonOpenFormNewCard = document.querySelector(".profile__add");
 const buttonEditProfile = content.querySelector('.profile__edit');
-const buttonCloseEditProfilePopup = document.querySelector('.popup__close');
+const buttonCloseEditProfilePopup = document.querySelector('.popup__close_profile');
 const popupEditProfile = document.querySelector('#change-profile');
 const formEditProfile = document.querySelector('.popup__container-input_type_edit');
 const inputName = document.querySelector('.popup__item_type_username');
 const inputSign = document.querySelector('.popup__item_type_useroccupation');
 
-//попап открытия фотографии
 const popupCardPhoto = document.querySelector('.popup-full-image');
 const popupImageCard = document.querySelector('.popup__pic');
 const popupTitleCard = document.querySelector('.popup__pic-directory');
-const buttonClosePhoto = document.querySelector(".popup__close");
-const buttonCloseAddCardPopup = document.querySelector('.popup__close');
+const buttonClosePhoto = document.querySelector(".popup__close_photo");
+const buttonCloseAddCardPopup = document.querySelector('.popup__close_card');
 
-//попап добавления карточки
 const formAddCard = document.querySelector(".popup__container-input_type_card");
-const popupFormNewCard = document.querySelector("#add-card");
+const popupFormNewCard = document.querySelector(".popup_type_add-card");
 const popupInputPlaceTitle = document.querySelector(".popup__item_type_callpopup");
 const popupInputPlaceLink = document.querySelector(".popup__item_type_picture");
 const cardTemplate = document.querySelector("#cardTemplate");
 const cardTemplateItem = document.querySelector("#cardTemplate").content.querySelector(".element");
 const cardsContainer = document.querySelector(".elements");
 
+
+
 export {
   cardTemplateItem, popupCardPhoto, cardsContainer,
   popupEditProfile, buttonEditProfile, popupFormNewCard, buttonOpenFormNewCard
 }
+
 
 export const validationConfig = {
   formSelector: ".popup__container",
@@ -70,5 +70,3 @@ export const validationConfig = {
   inputErrorClass: "popup__item_type_invalid",
   errorClass: "popup__item-error_type_picture",
 };
-
-

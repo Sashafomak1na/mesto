@@ -30,6 +30,11 @@ module.exports = {
         type: 'asset/resource',
       },
       {
+        test: /.js$/,
+        enforce: "pre",
+        use: ["source-map-loader"],
+      },
+      {
         test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, {
             loader: 'css-loader',

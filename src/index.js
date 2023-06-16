@@ -1,8 +1,8 @@
 import './pages/index.css';
 import {
   initialCards, validationConfig,
-  cardTemplateItem, cardsContainer, buttonEditProfile,
-  buttonOpenFormNewCard
+  cardTemplateItem, popupCardPhoto, cardsContainer, popupEditProfile, buttonEditProfile,
+  popupFormNewCard, buttonOpenFormNewCard
 }
   from "./utils/constants.js";
 import { Card } from "./components/Card.js";
@@ -12,16 +12,18 @@ import { Section } from "./components/Section.js";
 import { PopupWithForm } from "./components/PopupWithForm.js";
 import { PopupWithImage } from "./components/PopupWithImage.js";
 
+/**
+ * Профиль
+ **/
 
-
-
+//данные профиля
 const userInfo = new UserInfo({
   name: ".profile__title",
   description: ".profile__subtitle",
 });
 
-
-const popupUserInfo = new PopupWithForm("#change-profile", {
+//попап профиля
+const popupUserInfo = new PopupWithForm(popupEditProfile, {
   handleFormSubmit: (data) => {
     userInfo.setUserInfo(data);
 
@@ -29,13 +31,18 @@ const popupUserInfo = new PopupWithForm("#change-profile", {
 });
 popupUserInfo.setEventListeners();
 
+//открытиe редактирования профиля
 buttonEditProfile.addEventListener("click", () => {
   popupUserInfo.setInputValues(userInfo.getUserInfo());
-  formValidators["profile__edit"].resetValidation();
   popupUserInfo.open();
+  formValidators["profile__edit"].resetValidation();
 });
 
+/**
+ * Карточка
+ **/
 
+//создание карточки
 const createCard = (data) => {
   const card = new Card(data, cardTemplateItem, () => {
     popupImage.open(data);
@@ -43,7 +50,7 @@ const createCard = (data) => {
   return card.generateCard();
 };
 
-
+//наполнение карточками
 const cardsList = new Section(
   {
     renderer: (initialCards) => {
@@ -54,16 +61,20 @@ const cardsList = new Section(
 );
 cardsList.rendererItems(initialCards);
 
-
-const popupAddNewCard = new PopupWithForm("#add-card", {
+//попап добавления новой карточки
+const popupAddNewCard = new PopupWithForm(popupFormNewCard, {
   handleFormSubmit: ({ place, link }) => {
     cardsList.setItem(createCard({ name: place, link: link }));
   },
 });
 popupAddNewCard.setEventListeners();
 
+/**
+ * Полноразмерное фото карточки
+ **/
 
-const popupImage = new PopupWithImage(".popup-full-image");
+//попап полноразмерного фото карточки
+const popupImage = new PopupWithImage(popupCardPhoto);
 popupImage.setEventListeners();
 
 buttonOpenFormNewCard.addEventListener("click", () => {
@@ -71,14 +82,19 @@ buttonOpenFormNewCard.addEventListener("click", () => {
   popupAddNewCard.open();
 });
 
+/**
+ * Валидация
+ **/
 
 const formValidators = {}
 
+// включение валидации
 const enableValidation = (validationConfig) => {
+  //const formList = Array.from(document.querySelectorAll(validationConfig.formSelector))
   const formList = Array.from(document.forms)
   formList.forEach((formElement) => {
     const validator = new FormValidator(validationConfig, formElement)
-    const formName = formElement.getAttribute('name')///!
+    const formName = formElement.getAttribute('name')
     formValidators[formName] = validator;
     validator.enableValidation();
   });
