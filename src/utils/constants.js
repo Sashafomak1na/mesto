@@ -47,7 +47,7 @@ const buttonClosePhoto = document.querySelector(".popup__close_photo");
 const buttonCloseAddCardPopup = document.querySelector('.popup__close_card');
 
 const formAddCard = document.querySelector(".popup__container-input_type_card");
-const popupFormNewCard = document.querySelector(".popup_type_add-card");
+const popupFormNewCard = document.querySelector("#add-card");
 const popupInputPlaceTitle = document.querySelector(".popup__item_type_callpopup");
 const popupInputPlaceLink = document.querySelector(".popup__item_type_picture");
 const cardTemplate = document.querySelector("#cardTemplate");

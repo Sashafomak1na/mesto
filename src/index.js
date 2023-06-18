@@ -12,15 +12,14 @@ import { Section } from "./components/Section.js";
 import { PopupWithForm } from "./components/PopupWithForm.js";
 import { PopupWithImage } from "./components/PopupWithImage.js";
 
-/**
- * Профиль
- **/
 
-//данные профиля
+
+//профиль
 const userInfo = new UserInfo({
   name: ".profile__title",
   description: ".profile__subtitle",
 });
+
 
 //попап профиля
 const popupUserInfo = new PopupWithForm(popupEditProfile, {
@@ -31,16 +30,13 @@ const popupUserInfo = new PopupWithForm(popupEditProfile, {
 });
 popupUserInfo.setEventListeners();
 
-//открытиe редактирования профиля
+// редактирование профиля
 buttonEditProfile.addEventListener("click", () => {
   popupUserInfo.setInputValues(userInfo.getUserInfo());
   popupUserInfo.open();
-  formValidators["profile__edit"].resetValidation();
+  // formValidators["profile__edit"].resetValidation();
 });
 
-/**
- * Карточка
- **/
 
 //создание карточки
 const createCard = (data) => {
@@ -78,7 +74,7 @@ const popupImage = new PopupWithImage(popupCardPhoto);
 popupImage.setEventListeners();
 
 buttonOpenFormNewCard.addEventListener("click", () => {
-  formValidators["profile__card"].resetValidation();
+  // formValidators["profile__card"].resetValidation();
   popupAddNewCard.open();
 });
 
@@ -89,17 +85,17 @@ buttonOpenFormNewCard.addEventListener("click", () => {
 const formValidators = {}
 
 // включение валидации
-const enableValidation = (validationConfig) => {
-  //const formList = Array.from(document.querySelectorAll(validationConfig.formSelector))
-  const formList = Array.from(document.forms)
-  formList.forEach((formElement) => {
-    const validator = new FormValidator(validationConfig, formElement)
-    const formName = formElement.getAttribute('name')
-    formValidators[formName] = validator;
-    validator.enableValidation();
-  });
-};
+// const enableValidation = (validationConfig) => {
+//   //const formList = Array.from(document.querySelectorAll(validationConfig.formSelector))
+//   const formList = Array.from(document.forms)
+//   formList.forEach((formElement) => {
+//     const validator = new FormValidator(validationConfig, formElement)
+//     const formName = formElement.getAttribute('name')
+//     formValidators[formName] = validator;
+//     validator.enableValidation();
+//   });
+// };
 
-enableValidation(validationConfig);
-formValidators['profile__edit'].resetValidation()
-formValidators['profile__card'].resetValidation()
+// enableValidation(validationConfig);
+//  formValidators['profile__edit'].resetValidation()
+//  formValidators['profile__card'].resetValidation()
