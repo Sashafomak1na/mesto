@@ -1,6 +1,7 @@
 import './pages/index.css';
 import {
-  initialCards, validationConfig,
+  
+  profileName, profileSign, initialCards,  config,
   cardTemplateItem, popupCardPhoto, cardsContainer, popupEditProfile, buttonEditProfile,
   popupFormNewCard, buttonOpenFormNewCard
 }
@@ -12,14 +13,17 @@ import { Section } from "./components/Section.js";
 import { PopupWithForm } from "./components/PopupWithForm.js";
 import { PopupWithImage } from "./components/PopupWithImage.js";
 
+const editProfileFormValidator = new FormValidator(config, document.forms.profile);
+const addCardFormValidator = new FormValidator(config, document.forms.element);
+
+
 
 
 //профиль
 const userInfo = new UserInfo({
-  name: ".profile__title",
-  description: ".profile__subtitle",
+  username: ".profile__title",
+  useroccupation: ".profile__subtitle",
 });
-
 
 //попап профиля
 const popupUserInfo = new PopupWithForm(popupEditProfile, {
@@ -33,8 +37,9 @@ popupUserInfo.setEventListeners();
 // редактирование профиля
 buttonEditProfile.addEventListener("click", () => {
   popupUserInfo.setInputValues(userInfo.getUserInfo());
+  // editProfileFormValidator.refreshForm();
   popupUserInfo.open();
-  // formValidators["profile__edit"].resetValidation();
+  
 });
 
 
@@ -74,28 +79,18 @@ const popupImage = new PopupWithImage(popupCardPhoto);
 popupImage.setEventListeners();
 
 buttonOpenFormNewCard.addEventListener("click", () => {
-  // formValidators["profile__card"].resetValidation();
+  addCardFormValidator.refreshForm();
   popupAddNewCard.open();
 });
 
-/**
- * Валидация
- **/
 
-const formValidators = {}
+editProfileFormValidator.enableValidation();
+addCardFormValidator.enableValidation();
 
-// включение валидации
-// const enableValidation = (validationConfig) => {
-//   //const formList = Array.from(document.querySelectorAll(validationConfig.formSelector))
-//   const formList = Array.from(document.forms)
-//   formList.forEach((formElement) => {
-//     const validator = new FormValidator(validationConfig, formElement)
-//     const formName = formElement.getAttribute('name')
-//     formValidators[formName] = validator;
-//     validator.enableValidation();
-//   });
-// };
 
-// enableValidation(validationConfig);
-//  formValidators['profile__edit'].resetValidation()
-//  formValidators['profile__card'].resetValidation()
+
+ 
+
+
+
+

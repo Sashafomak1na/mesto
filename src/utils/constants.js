@@ -57,12 +57,13 @@ const cardsContainer = document.querySelector(".elements");
 
 
 export {
-  cardTemplateItem, popupCardPhoto, cardsContainer,
+
+  profileName, profileSign, cardTemplateItem, popupCardPhoto, cardsContainer,
   popupEditProfile, buttonEditProfile, popupFormNewCard, buttonOpenFormNewCard
 }
 
 
-export const validationConfig = {
+export const config = {
   formSelector: ".popup__container",
   inputSelector: ".popup__item",
   submitButtonSelector: ".popup__save",
