@@ -64,7 +64,7 @@ export {
 
 
 export const config = {
-  formSelector: ".popup__container",
+  formSelector: ".popup__container-input",
   inputSelector: ".popup__item",
   submitButtonSelector: ".popup__save",
   inactiveButtonClass: "popup__save_valid",

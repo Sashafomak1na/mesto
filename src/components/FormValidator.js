@@ -13,6 +13,12 @@ class FormValidator {
 
   _showInputError(inputElement, errorMessage) { //Функция выделения невалидного поля формы
     const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
+    
+    console.log(errorElement, "errorElement")
+    console.log(`.${inputElement.id}-error`, "Selector")
+    console.log(inputElement)
+
+
     inputElement.classList.add(this._inputErrorClass);
     errorElement.textContent = errorMessage;
     errorElement.classList.add(this._errorClass);
