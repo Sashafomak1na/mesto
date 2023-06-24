@@ -12,21 +12,14 @@ class FormValidator {
   }
 
   _showInputError(inputElement, errorMessage) { //Функция выделения невалидного поля формы
-    const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
-    
-    console.log(errorElement, "errorElement")
-    console.log(`.${inputElement.id}-error`, "Selector")
-    console.log(inputElement)
-
-
+    const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.add(this._inputErrorClass);
     errorElement.textContent = errorMessage;
     errorElement.classList.add(this._errorClass);
   }
 
   _hideInputError(inputElement) { //Функция скрытия невалидного поля формы
-    const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
-    console.log(inputElement)
+    const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.remove(this._inputErrorClass);
     errorElement.classList.remove(this._errorClass);
     errorElement.textContent = '';
@@ -73,10 +66,8 @@ class FormValidator {
   refreshForm() { //Функция обновления полей в форме
     this._inputList.forEach((inputElement) => {
       this._hideInputError(inputElement);
-      console.log(inputElement)
     });
     this._toggleButtonState();
-    console.log(inputElement)
   }
 }
 
