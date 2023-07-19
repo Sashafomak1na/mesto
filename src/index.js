@@ -1,20 +1,43 @@
 import './pages/index.css';
-import {
-  
-  profileName, profileSign, initialCards,  config,
-  cardTemplateItem, popupCardPhoto, cardsContainer, popupEditProfile, buttonEditProfile,
-  popupFormNewCard, buttonOpenFormNewCard
-}
-  from "./utils/constants.js";
+import { apiConfig } from './utils/constants.js';
+import { Api } from "./components/Api.js";
 import { Card } from "./components/Card.js";
-import { FormValidator } from "./components/FormValidator.js";
 import { UserInfo } from "./components/UserInfo.js";
 import { Section } from "./components/Section.js";
 import { PopupWithForm } from "./components/PopupWithForm.js";
 import { PopupWithImage } from "./components/PopupWithImage.js";
+import { FormValidator } from "./components/FormValidator.js";
+import { PopupSubmit } from "./components/PopupSubmit.js";
+import {
+  cardsContainer,
+  popupEditProfile,
+  validationConfig,
+  cardTemplateItem,
+  buttonEditProfile,
+  popupFormNewCard,
+  buttonOpenFormNewCard,
+  buttonAvatar,
+  popupDelete,
+  popupAvatar, 
+  popupCardPhoto
+} from "./utils/constants.js";
 
-const editProfileFormValidator = new FormValidator(config, document.forms.profile);
-const addCardFormValidator = new FormValidator(config, document.forms.element);
+
+
+/**
+ * Профиль
+ **/
+
+let currentUserId;
+const api = new Api(apiConfig.url, apiConfig.headers);
+Promise.all([api.getUserInfoApi(), api.getInitialCards()])
+  .then(([user, data]) => {
+    currentUserId = user._id;
+    userInfo.setUserInfo({ name: user.name, description: user.about });
+    userInfo.setUserAvatar(user);
+    cardsList.rendererItems(data, currentUserId);
+  })
+  .catch((error) => console.log(error));
 
 
 
@@ -23,52 +46,100 @@ const addCardFormValidator = new FormValidator(config, document.forms.element);
 const userInfo = new UserInfo({
   username: ".profile__title",
   useroccupation: ".profile__subtitle",
+  avatar: ".profile__avatar"
 });
 
 //попап профиля
 const popupUserInfo = new PopupWithForm(popupEditProfile, {
   handleFormSubmit: (data) => {
-    userInfo.setUserInfo(data);
-
+    return api
+    .setUserInfoApi(data)
+    .then(() => userInfo.setUserInfo(data))
+    .catch((error) => console.log(error));
   },
 });
-popupUserInfo.setEventListeners();
+
 
 // редактирование профиля
 buttonEditProfile.addEventListener("click", () => {
   popupUserInfo.setInputValues(userInfo.getUserInfo());
-  // editProfileFormValidator.refreshForm();
+  formValidators["form-profile"].resetValidation();
   popupUserInfo.open();
-  
 });
 
 
 //создание карточки
-const createCard = (data) => {
-  const card = new Card(data, cardTemplateItem, () => {
-    popupImage.open(data);
+const createCard = (data, user) => {
+  const card = new Card({
+    data: data,
+    userId: user,
+    templateSelector: cardTemplateItem,
+    handleCardClick: () => {
+      popupImage.open(data);
+    },
+
+    handleDeleteCard: (cardID, cardElement) => {
+      popupFormDelete.open(cardID, cardElement);
+    },
+
+    like: (cardID) => {
+      api
+        .sendLike(cardID)
+        .then((res) => card.renderLikes(res))
+        .catch((error) => console.log(error));
+    },
+    unlike: (cardID) => {
+      api
+        .deleteLike(cardID)
+        .then((res) => card.renderLikes(res))
+        .catch((error) => console.log(error));
+    },
   });
+
   return card.generateCard();
 };
 
 //наполнение карточками
 const cardsList = new Section(
   {
-    renderer: (initialCards) => {
-      cardsList.setItem(createCard(initialCards));
+    renderer: (initialCards, userId) => {
+      cardsList.addItem(createCard(initialCards, userId));
     },
   },
-  cardsContainer
+  ".elements"
 );
-cardsList.rendererItems(initialCards);
+
 
 //попап добавления новой карточки
 const popupAddNewCard = new PopupWithForm(popupFormNewCard, {
   handleFormSubmit: ({ place, link }) => {
-    cardsList.setItem(createCard({ name: place, link: link }));
+    return api
+      .addNewCards({ name: place, link: link })
+      .then((newCard) => {
+        cardsList.addItemPrepend(createCard(newCard, currentUserId));
+      })
+      .catch((error) => console.log("add card :", error));
   },
 });
-popupAddNewCard.setEventListeners();
+
+
+
+//удаление карточки 
+const popupFormDelete = new PopupSubmit(popupDelete, {
+  handleSubmit: (id, card) => {
+    popupFormDelete.renderPreloader(true, "Удаление ...");
+    api
+      .deleteCardApi(id)
+      .then(() => {
+        card.deleteCard();
+        popupFormDelete.close();
+      })
+      .catch((error) => console.log("error delete card :" + error))
+      .finally(() => {
+        popupFormDelete.renderPreloader(false);
+      });
+  },
+});
 
 /**
  * Полноразмерное фото карточки
@@ -79,14 +150,51 @@ const popupImage = new PopupWithImage(popupCardPhoto);
 popupImage.setEventListeners();
 
 buttonOpenFormNewCard.addEventListener("click", () => {
-  addCardFormValidator.refreshForm();
+  formValidators["form-card"].resetValidation();
   popupAddNewCard.open();
 });
 
 
-editProfileFormValidator.enableValidation();
-addCardFormValidator.enableValidation();
 
+//попап редактировапния аватара
+const newAvatar = new PopupWithForm(popupAvatar, {
+  handleFormSubmit: (data) => {
+    return api
+      .setUserAvatar(data)
+      .then((data) => {
+        userInfo.setUserAvatar(data);
+      })
+      .catch((error) => console.log(error));
+  },
+});
+
+buttonAvatar.addEventListener("click", () => {
+  formValidators["form-avatar"].resetValidation();
+  newAvatar.open();
+});
+
+
+//цепляем листнеры
+popupImage.setEventListeners();
+popupUserInfo.setEventListeners();
+popupAddNewCard.setEventListeners();
+popupFormDelete.setEventListeners();
+newAvatar.setEventListeners();
+
+const formValidators = {}
+
+// включение валидации
+const enableValidation = (validationConfig) => {
+  const formList = Array.from(document.forms);
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(validationConfig, formElement);
+    const formName = formElement.getAttribute('name');
+    formValidators[formName] = validator;
+    validator.enableValidation();
+  });
+};
+
+enableValidation(validationConfig);
 
 
  

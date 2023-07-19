@@ -34,13 +34,14 @@ const profileName = content.querySelector('.profile__title');
 const profileSign = content.querySelector('.profile__subtitle');
 const buttonOpenFormNewCard = document.querySelector(".profile__add");
 const buttonEditProfile = content.querySelector('.profile__edit');
+const buttonAvatar = content.querySelector('.profile__avatar-btn')
 const buttonCloseEditProfilePopup = document.querySelector('.popup__close_profile');
 const popupEditProfile = document.querySelector('#change-profile');
 const formEditProfile = document.querySelector('.popup__container-input_type_edit');
 const inputName = document.querySelector('.popup__item_type_username');
 const inputSign = document.querySelector('.popup__item_type_useroccupation');
 
-const popupCardPhoto = document.querySelector('.popup-full-image');
+const popupCardPhoto = document.querySelector('#popup-full-image');
 const popupImageCard = document.querySelector('.popup__pic');
 const popupTitleCard = document.querySelector('.popup__pic-directory');
 const buttonClosePhoto = document.querySelector(".popup__close_photo");
@@ -53,17 +54,21 @@ const popupInputPlaceLink = document.querySelector(".popup__item_type_picture");
 const cardTemplate = document.querySelector("#cardTemplate");
 const cardTemplateItem = document.querySelector("#cardTemplate").content.querySelector(".element");
 const cardsContainer = document.querySelector(".elements");
+const popupDelete = document.querySelector("#delete")
+const popupAvatar = document.querySelector("#avatar")
+
+
 
 
 
 export {
 
   profileName, profileSign, cardTemplateItem, popupCardPhoto, cardsContainer,
-  popupEditProfile, buttonEditProfile, popupFormNewCard, buttonOpenFormNewCard
+  popupEditProfile, buttonEditProfile, popupFormNewCard, buttonOpenFormNewCard, buttonAvatar, popupDelete, popupAvatar
 }
 
 
-export const config = {
+export const validationConfig = {
   formSelector: ".popup__container-input",
   inputSelector: ".popup__item",
   submitButtonSelector: ".popup__save",
@@ -71,3 +76,12 @@ export const config = {
   inputErrorClass: "popup__item_type_invalid",
   errorClass: "popup__item-error_type_picture",
 };
+
+
+export const apiConfig = {
+  url: 'https://mesto.nomoreparties.co/v1/cohort-71',
+  headers:{
+    authorization: 'ec265280-7716-4c4b-b105-f3dcaf615320',
+    'Content-Type': 'application/json'
+  }
+}
