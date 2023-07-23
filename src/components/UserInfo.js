@@ -12,9 +12,9 @@ export class UserInfo {
     };
   }
 
-  setUserInfo(data) {
-    this._username.textContent = data.username;
-    this._useroccupation.textContent = data.useroccupation;
+  setUserInfo({username, useroccupation}) {
+    this._username.textContent = username;
+    this._useroccupation.textContent = useroccupation;
   }
 
   setUserAvatar(user) {

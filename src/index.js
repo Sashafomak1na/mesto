@@ -33,7 +33,7 @@ const api = new Api(apiConfig.url, apiConfig.headers);
 Promise.all([api.getUserInfoApi(), api.getInitialCards()])
   .then(([user, data]) => {
     currentUserId = user._id;
-    userInfo.setUserInfo({ name: user.name, description: user.about });
+    userInfo.setUserInfo({ username: user.name, useroccupation: user.about });
     userInfo.setUserAvatar(user);
     cardsList.rendererItems(data, currentUserId);
   })
@@ -48,7 +48,7 @@ const userInfo = new UserInfo({
   useroccupation: ".profile__subtitle",
   avatar: ".profile__avatar"
 });
-
+console.log(userInfo)
 //попап профиля
 const popupUserInfo = new PopupWithForm(popupEditProfile, {
   handleFormSubmit: (data) => {
@@ -132,8 +132,7 @@ const popupFormDelete = new PopupSubmit(popupDelete, {
       .deleteCardApi(id)
       .then(() => {
         card.deleteCard();
-        popupFormDelete.close();
-      })
+      }).then(() => {popupFormDelete.close();})
       .catch((error) => console.log("error delete card :" + error))
       .finally(() => {
         popupFormDelete.renderPreloader(false);

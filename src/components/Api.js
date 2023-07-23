@@ -5,14 +5,14 @@ export class Api {
     }
     getInitialCards() {
         return fetch(`${this._url}/cards`, {
-        methos: "GET", 
+        method: "GET", 
         headers: this._headers})
         .then((res) => this._checkResponse(res));
     }
     //получить данные пользователя
     getUserInfoApi() {
         return fetch(`${this._url}/users/me`,{
-        methos: "GET",
+        method: "GET",
         headers: this._headers})
         .then((res) => this._checkResponse(res));
     }
