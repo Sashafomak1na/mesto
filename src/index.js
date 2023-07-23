@@ -55,6 +55,8 @@ const popupUserInfo = new PopupWithForm(popupEditProfile, {
     return api
     .setUserInfoApi(data)
     .then(() => userInfo.setUserInfo(data))
+    .then(() => {
+      popupUserInfo.close()})
     .catch((error) => console.log(error));
   },
 });
@@ -118,6 +120,8 @@ const popupAddNewCard = new PopupWithForm(popupFormNewCard, {
       .then((newCard) => {
         cardsList.addItemPrepend(createCard(newCard, currentUserId));
       })
+      .then(() => {
+        popupAddNewCard.close()})
       .catch((error) => console.log("add card :", error));
   },
 });
@@ -163,6 +167,8 @@ const newAvatar = new PopupWithForm(popupAvatar, {
       .then((data) => {
         userInfo.setUserAvatar(data);
       })
+      .then(() => {
+        newAvatar.close()})
       .catch((error) => console.log(error));
   },
 });
